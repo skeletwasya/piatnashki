@@ -1,0 +1,16 @@
+E:\Vanya\programs\piatnashki\bin\Debug\net8.0-windows\piatnashki.exe
+E:\Vanya\programs\piatnashki\bin\Debug\net8.0-windows\piatnashki.deps.json
+E:\Vanya\programs\piatnashki\bin\Debug\net8.0-windows\piatnashki.runtimeconfig.json
+E:\Vanya\programs\piatnashki\bin\Debug\net8.0-windows\piatnashki.dll
+E:\Vanya\programs\piatnashki\bin\Debug\net8.0-windows\piatnashki.pdb
+E:\Vanya\programs\piatnashki\obj\Debug\net8.0-windows\piatnashki.Form1.resources
+E:\Vanya\programs\piatnashki\obj\Debug\net8.0-windows\piatnashki.csproj.GenerateResource.cache
+E:\Vanya\programs\piatnashki\obj\Debug\net8.0-windows\piatnashki.GeneratedMSBuildEditorConfig.editorconfig
+E:\Vanya\programs\piatnashki\obj\Debug\net8.0-windows\piatnashki.AssemblyInfoInputs.cache
+E:\Vanya\programs\piatnashki\obj\Debug\net8.0-windows\piatnashki.AssemblyInfo.cs
+E:\Vanya\programs\piatnashki\obj\Debug\net8.0-windows\piatnashki.csproj.CoreCompileInputs.cache
+E:\Vanya\programs\piatnashki\obj\Debug\net8.0-windows\piatnashki.dll
+E:\Vanya\programs\piatnashki\obj\Debug\net8.0-windows\refint\piatnashki.dll
+E:\Vanya\programs\piatnashki\obj\Debug\net8.0-windows\piatnashki.pdb
+E:\Vanya\programs\piatnashki\obj\Debug\net8.0-windows\piatnashki.genruntimeconfig.cache
+E:\Vanya\programs\piatnashki\obj\Debug\net8.0-windows\ref\piatnashki.dll
