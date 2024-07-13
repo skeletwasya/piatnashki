@@ -25,8 +25,7 @@
                 if (code == null) throw new Exception("code is null");
                 return code; 
             }
-        }
-        
+        }       
         //Двумерный массив клеток размером [parts,parts]
         Tile[,]? tiles;
         public TileSet(Bitmap picture, int parts)
@@ -68,6 +67,24 @@
                 }
             }
             this.tiles = tiles;
+        }
+        public TileSet Copy()
+        {
+            TileSet copy = new TileSet(picture, parts);
+            return copy;
+        }
+        public void CopyValue(TileSet tls)
+        {
+            if (parts != tls.parts) throw new Exception("tile sets are not compatible");
+            if (IdOfTheCorner != tls.IdOfTheCorner) throw new Exception("Id's of the corner are not the same");
+            for(int i = 0; i < parts; i++)
+            {
+                for(int j = 0; j < parts; j++)
+                {
+                    this[i, j].Picture = tls[i,j].Picture;
+                    this[i, j].ID = tls[i, j].ID;
+                }
+            }
         }
         private void SetCode()
         {

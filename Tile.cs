@@ -10,7 +10,8 @@
             {
                 if (id == null) throw new Exception("id is null");
                 return id;
-            } 
+            }
+            set { id = value; }
         }
         
         //Обрезанная картинка, полученная извне
@@ -21,7 +22,8 @@
             {
                 if (picture == null) throw new Exception("picture is null");
                 return picture; 
-            } 
+            }
+            set {  picture = value; }
         }
 
         public Tile(string id, Bitmap? picture)

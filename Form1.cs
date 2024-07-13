@@ -14,6 +14,7 @@ namespace piatnashki
         Bitmap MainBmp;
         Graphics MainGraphics;
         TileSet tileSet;
+        TileSet originalTileSet;
         int parts = 4;
         int size;
         bool isDragging;
@@ -28,10 +29,12 @@ namespace piatnashki
             {
                 try
                 {
+                    EnableButtons();
                     Bitmap picture = new Bitmap(ofd.FileName);
                     //TODO: создать метод выбора области, который выводит pictureZoomed
                     Bitmap pictureZoomed = new Bitmap(picture, pictureBox1.Width, pictureBox1.Height);
                     tileSet = new TileSet(pictureZoomed, parts);
+                    originalTileSet = tileSet.Copy();
                     size = pictureZoomed.Width / parts;
                     DrawTileSet();
                 }
@@ -40,6 +43,15 @@ namespace piatnashki
                     MessageBox.Show("Невозможно открыть файл", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+        private void EnableButtons()
+        {
+            button2.Visible = true;
+            button3.Visible = true;
+            button4.Visible = true;
+            button5.Visible = true;
+            button6.Visible = true;
+            button7.Visible = true;
         }
         private void DrawTileSet()
         {
@@ -130,6 +142,17 @@ namespace piatnashki
                 delta.Y = Math.Abs(e.Y - j * size);
             }
         }
+        private void SwitchWithCornerTile(Point from)
+        {
+            int i = from.X;
+            int j = from.Y;
+            Point cornerCoord = tileSet.GetById(tileSet.IdOfTheCorner);
+            int k = cornerCoord.X;
+            int m = cornerCoord.Y;
+            Tile tmp = tileSet[i, j];
+            tileSet[i, j] = tileSet[k, m];
+            tileSet[k, m] = tmp;
+        }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
@@ -143,11 +166,11 @@ namespace piatnashki
                 {
                     MainGraphics.DrawImage(tileSet[i, j].Picture, i * size, e.Y - delta.Y);
                 }
-                else if(dir == Direction.Up && e.Y - delta.Y >= j * size)
+                else if (dir == Direction.Up && e.Y - delta.Y >= j * size)
                 {
                     MainGraphics.DrawImage(tileSet[i, j].Picture, i * size, j * size);
                 }
-                else if(dir == Direction.Up && e.Y - delta.Y <= j * size - size)
+                else if (dir == Direction.Up && e.Y - delta.Y <= j * size - size)
                 {
                     MainGraphics.DrawImage(tileSet[i, j].Picture, i * size, j * size - size);
                 }
@@ -199,16 +222,9 @@ namespace piatnashki
             {
                 isDragging = false;
                 Point coordsOfDestination = CoordsThatFitsMousePosition(e.X, e.Y);
-                if(coordsOfDestination != coordOfDragged)
+                if (coordsOfDestination != coordOfDragged)
                 {
-                    int i = coordOfDragged.X;
-                    int j = coordOfDragged.Y;
-                    Point cornerCoord = tileSet.GetById(tileSet.IdOfTheCorner);
-                    int k = cornerCoord.X;
-                    int m = cornerCoord.Y;
-                    Tile tmp = tileSet[i, j];
-                    tileSet[i, j] = tileSet[k, m];
-                    tileSet[k, m] = tmp;
+                    SwitchWithCornerTile(coordOfDragged);
                 }
                 CheckCode();
                 DrawTileSet();
@@ -218,14 +234,14 @@ namespace piatnashki
         private void CheckCode()
         {
             string nCode = "";
-            for(int i = 0; i < parts; i++)
+            for (int i = 0; i < parts; i++)
             {
-                for(int j = 0; j < parts; j++)
+                for (int j = 0; j < parts; j++)
                 {
                     nCode += tileSet[i, j].ID;
                 }
             }
-            if(nCode == tileSet.Code)
+            if (nCode == tileSet.Code)
             {
                 label1.Text = "Ура!";
             }
@@ -233,6 +249,73 @@ namespace piatnashki
             {
                 label1.Text = "";
             }
+        }
+
+        private void MakeMove(Direction dir)
+        {
+            Point cornerCoord = tileSet.GetById(tileSet.IdOfTheCorner);
+            if (dir == Direction.Up && cornerCoord.Y + 1 != parts)
+            {
+                SwitchWithCornerTile(new Point(cornerCoord.X, cornerCoord.Y + 1));
+            }
+            if (dir == Direction.Right && cornerCoord.X - 1 != -1)
+            {
+                SwitchWithCornerTile(new Point(cornerCoord.X - 1, cornerCoord.Y));
+            }
+            if (dir == Direction.Down && cornerCoord.Y - 1 != -1)
+            {
+                SwitchWithCornerTile(new Point(cornerCoord.X, cornerCoord.Y - 1));
+            }
+            if (dir == Direction.Left && cornerCoord.X + 1 != parts)
+            {
+                SwitchWithCornerTile(new Point(cornerCoord.X + 1, cornerCoord.Y));
+            }
+        }
+
+        //Up
+        private void UpButton_Click(object sender, EventArgs e)
+        {
+            MakeMove(Direction.Up);
+            CheckCode();
+            DrawTileSet();
+        }
+        //Right
+        private void RightButton_Click(object sender, EventArgs e)
+        {
+            MakeMove(Direction.Right);
+            CheckCode();
+            DrawTileSet();
+        }
+        //Down
+        private void DownButton_Click(object sender, EventArgs e)
+        {
+            MakeMove(Direction.Down);
+            CheckCode();
+            DrawTileSet();
+        }
+        //Left
+        private void LeftButtonClick(object sender, EventArgs e)
+        {
+            MakeMove(Direction.Left);
+            CheckCode();
+            DrawTileSet();
+        }
+
+        private void ShuffleButton_Click(object sender, EventArgs e)
+        {
+            var rand = new Random();
+            for (int i = 0; i < 10; i++)
+            {
+                Direction dir = (Direction)rand.Next(-1, 4);
+                MakeMove(dir);
+            }
+            DrawTileSet();
+        }
+
+        private void ResetButton_Click(object sender, EventArgs e)
+        {
+            tileSet.CopyValue(originalTileSet);
+            DrawTileSet();
         }
     }
 }
