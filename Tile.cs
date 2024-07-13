@@ -12,6 +12,7 @@
                 return id;
             } 
         }
+        
         //Обрезанная картинка, полученная извне
         private Bitmap? picture;
         public Bitmap? Picture 

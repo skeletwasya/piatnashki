@@ -30,6 +30,7 @@
         {
             button1 = new Button();
             pictureBox1 = new PictureBox();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -56,23 +57,34 @@
             pictureBox1.MouseMove += pictureBox1_MouseMove;
             pictureBox1.MouseUp += pictureBox1_MouseUp;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(783, 272);
+            label1.Name = "label1";
+            label1.Size = new Size(0, 15);
+            label1.TabIndex = 2;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveBorder;
             ClientSize = new Size(922, 706);
+            Controls.Add(label1);
             Controls.Add(pictureBox1);
             Controls.Add(button1);
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Button button1;
         private PictureBox pictureBox1;
+        private Label label1;
     }
 }

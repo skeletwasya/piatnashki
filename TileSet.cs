@@ -18,6 +18,15 @@
                 return idOfTheCorner;
             }
         }
+        public string Code
+        {
+            get 
+            {
+                if (code == null) throw new Exception("code is null");
+                return code; 
+            }
+        }
+        
         //Двумерный массив клеток размером [parts,parts]
         Tile[,]? tiles;
         public TileSet(Bitmap picture, int parts)
@@ -26,6 +35,21 @@
             this.picture = picture;
             SetTiles();
             SetCode();
+        }
+        public Point GetById(string id)
+        {
+            if (tiles == null) throw new Exception("tiles is null");
+            for(int i = 0; i < parts; i++) 
+            {
+                for(int j = 0; j < parts; j++)
+                {
+                    if (tiles[i,j].ID == id)
+                    {
+                        return new Point(i,j);
+                    }
+                }
+            }
+            throw new Exception("id does not exist");
         }
         private void SetTiles()
         {
@@ -77,6 +101,12 @@
                 if (tiles == null) throw new Exception("tiles array is null");
                 if (i >= parts || j >= parts || i < 0 || j < 0) throw new ArgumentOutOfRangeException();
                 return tiles[i, j]; 
+            }
+            set
+            {
+                if (tiles == null) throw new Exception("tiles array is null");
+                if (i >= parts || j >= parts || i < 0 || j < 0) throw new ArgumentOutOfRangeException();
+                tiles[i, j] = value;
             }
         }
     }

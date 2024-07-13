@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("piatnashki")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f72eac117078831a50e118777cd31391e01c15ca")]
 [assembly: System.Reflection.AssemblyProductAttribute("piatnashki")]
 [assembly: System.Reflection.AssemblyTitleAttribute("piatnashki")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

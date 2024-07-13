@@ -14,3 +14,4 @@ E:\Vanya\programs\piatnashki\obj\Debug\net8.0-windows\refint\piatnashki.dll
 E:\Vanya\programs\piatnashki\obj\Debug\net8.0-windows\piatnashki.pdb
 E:\Vanya\programs\piatnashki\obj\Debug\net8.0-windows\piatnashki.genruntimeconfig.cache
 E:\Vanya\programs\piatnashki\obj\Debug\net8.0-windows\ref\piatnashki.dll
+E:\Vanya\programs\piatnashki\obj\Debug\net8.0-windows\piatnashki.sourcelink.json
